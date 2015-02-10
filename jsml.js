@@ -1,11 +1,5 @@
 var canvas;
 
-if (typeof window != "undefined") {
-  window.onload = function() {
-    canvas = document.getElementById('canvas');
-  }
-}
-
 function sqr(x) {
   return x * x;
 }
@@ -42,7 +36,7 @@ function fmt(arr) {
 
 function gd(examples, t1, t2, rate, precision) {
   t1 = t1 || 0;
-  t2 = t2 || 0;
+  t2 = t2 || 0; 
   rate = rate || 0.2;
   precision = precision || 10;
 
@@ -67,7 +61,7 @@ function gd(examples, t1, t2, rate, precision) {
   }
 } 
 
-var exs = [
+var exampleSets = [
   [[0, 0], [1, 1], [2, 2], [3, 3]],
   [[0, 1], [1, 2], [2, 3], [3, 4]],
   [[0, 1], [1, 1.5], [2, 2], [3, 2.5]],
@@ -75,4 +69,28 @@ var exs = [
   [[0, 3], [1, 4.6], [2, 6.6], [3, 8.9]]
 ];
 
-exs.map(gd);
+exampleSets.map(gd);
+
+function renderExamples(exampleSets) {
+  exampleSets.forEach(function(examples, i) {
+    var str = fmt(examples.map(fmt));
+    $('#examples').append('<li data-index="' + i + '">' + str + "</li>");  
+  });
+
+  $('#examples li').on('click', function() {
+    $('#examples li').removeClass('selected');
+    $(this).addClass('selected');
+    renderGradientDescent($(this).data('index'));
+  });
+}
+
+function renderGradientDescent(index) {
+  console.log(exampleSets[index]);
+}
+
+if (typeof window != "undefined") {
+  window.onload = function() {
+    canvas = document.getElementById('canvas');
+    renderExamples(exampleSets);
+  }
+}

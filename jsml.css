@@ -1,0 +1,19 @@
+#examples {
+	list-style-type: none;
+	padding: 0;
+	cursor: pointer;
+	width: 300px;
+}
+
+#examples li {
+	padding: 2px;
+}
+
+#examples li:nth-child(odd) {
+	background-color: #ccc;
+}
+
+#examples li.selected {
+	background-color: #393;
+	color: #eee;
+}
