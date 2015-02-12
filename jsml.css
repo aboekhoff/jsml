@@ -1,4 +1,9 @@
+#chart {
+	float: left;
+}
+
 #examples {
+	float: left;
 	list-style-type: none;
 	padding: 0;
 	cursor: pointer;
